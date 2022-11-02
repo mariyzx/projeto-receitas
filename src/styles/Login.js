@@ -37,7 +37,6 @@ export const Main = styled.div`
   }
 
   div > img {
-    color: ${({theme}) => theme.body};
     filter: ${({theme}) => theme.body === '#f1f1f1' ? 'none': 'invert(1)'};
     animation-duration: 2s;
     animation-iteration-count: infinite;
@@ -84,4 +83,8 @@ export const Button = styled.button `
   border: 2px solid transparent;
   border-radius: 7px;
   padding: 0.4rem;
+
+  &:hover {
+    background-color: #15ac87;
+  }
 `
