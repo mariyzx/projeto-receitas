@@ -61,6 +61,14 @@ export const Main = styled.div`
     100% { transform: scale(1,1)      translateY(0); }
   }
 
+  @media (max-width: 400px) {
+    width: 70%;
+
+    footer {
+      width: 90%;
+    }
+  }
+
 `
 
 export const Button = styled.button `
