@@ -61,6 +61,10 @@ export const Main = styled.div`
     100% { transform: scale(1,1)      translateY(0); }
   }
 
+  a:visited {
+    color: ${({theme}) => theme.body === '#f1f1f1' ? '#551a8b': '#842ad8'};
+  }
+
   @media (max-width: 400px) {
     width: 70%;
 
