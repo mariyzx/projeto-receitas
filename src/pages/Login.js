@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Main, Button } from '../styles/Login';
 import title from '../images/title.png';
+import { Redirect } from 'react-router-dom';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [disabled, setDisabled] = useState(true)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const emailValid = email.toLowerCase().match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)
@@ -17,14 +19,21 @@ function Login() {
       setDisabled(true)
     }
   }, [email, password])
-  
 
+  const saveToLocal = () => {
+    setLoading(true);
+    localStorage.setItem('user', email);
+    localStorage.setItem('mealsToken', '1');
+    localStorage.setItem('cocktailsToken', '1');
+  }
+  
   return (
     <Main>
       <div>
         <img src={ title } alt="title" />
         <p>Faça login e comece a usar!</p>
       </div>
+      { loading && <Redirect to="/foods" />}
       <form>
           <label>
             Endereço de e-mail
@@ -34,7 +43,7 @@ function Login() {
             Sua senha
           </label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Escreva sua senha...' />
-          <Button disabled={disabled}>Entrar</Button>
+          <Button disabled={disabled} onClick={() => saveToLocal()}>Entrar</Button>
       </form>
       <footer>Desenvolvido por 
         <a href="https://www.linkedin.com/in/marinhomariana8/" target="_blank" rel="noreferrer">Mariana Werneck</a> em 2022.</footer>
