@@ -8,6 +8,8 @@ import Recipes from './pages/Recipes';
 import { Button } from "./styles/ToggleButton";
 
 import { lightTheme, darkTheme } from './components/Themes';
+import Profile from "./pages/Profile";
+import RecipeDetails from "./pages/RecipeDetails";
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -24,7 +26,10 @@ function App() {
           </Button>
             <Route exact path="/" component={Home} />
             <Route exact path="/foods" component={Recipes} />
+            <Route exact path="/foods/:idMeals" component={RecipeDetails} />
             <Route exact path="/drinks" component={Recipes} />
+            <Route exact path="/drinks/:idDrinks" component={RecipeDetails} />
+            <Route exact path="/profile" component={Profile} />
         <GlobalStyles />
         </ThemeProvider>
       </Switch>
