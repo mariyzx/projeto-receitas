@@ -4,7 +4,7 @@ import { GlobalStyles } from "./styles/globalStyles";
 import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
-import Recipes from './components/Recipes';
+import Recipes from './pages/Recipes';
 import { Button } from "./styles/ToggleButton";
 
 import { lightTheme, darkTheme } from './components/Themes';
