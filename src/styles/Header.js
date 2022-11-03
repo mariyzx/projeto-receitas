@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Headers = styled.header `
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
   align-items: center;
   flex-direction: column;
 
@@ -32,6 +33,7 @@ export const Headers = styled.header `
 `
 
 export const SearchInputs = styled.div `
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,4 +56,11 @@ export const SearchInputs = styled.div `
   .form-check-input:checked {
     border-color: #d9d9d9;
   }
+`
+
+export const Radios = styled.div `
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
 `

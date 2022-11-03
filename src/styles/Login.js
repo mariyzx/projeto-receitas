@@ -11,7 +11,6 @@ export const Container = styled.div`
 `
 
 export const Main = styled.div`
-  // mobile first
 
   display: flex;
   flex-direction: column;
