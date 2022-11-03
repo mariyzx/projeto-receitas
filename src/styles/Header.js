@@ -15,6 +15,7 @@ export const Headers = styled.header `
     border: none;
     background-color: ${props => props.theme.body};
     color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
+    margin-bottom: 1rem;
 
     svg {
     width: 20px;
