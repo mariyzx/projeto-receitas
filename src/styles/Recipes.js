@@ -13,6 +13,35 @@ export const MainRecipe = styled.div `
 
 `
 
+export const DivCategories = styled.div `
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  gap: 0.5rem;
+  justify-content: center;
+
+  button {
+    border: 2px solid #d9d9d9;
+    background-color: ${props => props.theme.body};
+    color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
+    border-radius: 50px;
+    width: 15%;
+  }
+
+  @media (max-width: 600px) {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+
+    button {
+      width: 100px;
+    }
+}
+`
+
 export const CardRecipe = styled.div `
     display: flex;
     align-items: center;

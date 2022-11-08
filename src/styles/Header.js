@@ -77,4 +77,5 @@ export const Radios = styled.div `
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
+
 `

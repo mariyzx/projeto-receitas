@@ -5,6 +5,8 @@ import Context from './Context';
 function Provider({children}) {
   const [foods, setFoods] = useState('');
   const [drinks, setDrinks] = useState('');
+  const [foodsCategories, setFoodsCategories] = useState('');
+  const [drinksCategories, setDrinksCategories] = useState('');
   const [loading, setLoading] = useState(false);
 
   const foodAPI = async () => {
@@ -31,9 +33,33 @@ function Provider({children}) {
     }
   }
 
-  useEffect(() => { foodAPI(); drinkAPI() }, []);
+  const foodCategoryAPI = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://www.themealdb.com/api/json/v1/1/list.php?c=list');
+      const data = await response.json();
+      setFoodsCategories(data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
-  const contextValue = { foods, setFoods, drinks, setDrinks, loading, setLoading }
+  const drinkCategoryAPI = async () => {
+    try {
+      setLoading(true);
+      const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list');
+      const data = await response.json();
+      setDrinksCategories(data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(() => { foodAPI(); drinkAPI(); foodCategoryAPI(); drinkCategoryAPI(); }, []);
+
+  const contextValue = { foods, setFoods, drinks, setDrinks, loading, setLoading, foodsCategories, drinksCategories }
 
   return (
     <Context.Provider value={ contextValue }>
