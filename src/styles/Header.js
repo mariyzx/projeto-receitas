@@ -25,10 +25,11 @@ export const Headers = styled.header `
     }
   }
 
-  div > button:nth-child(3) {
+  div > button:nth-child(3), div > button:nth-child(4) {
     border: 2px solid #d9d9d9;
     border-radius: 50px;
     height: 35px;
+    margin-bottom: 0;
     width: 30%;
   }
 

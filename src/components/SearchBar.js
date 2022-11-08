@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
-import { getFoodWithFirstLetter, getFoodWithIngredients, getFoodWithName } from "../services/getFoodIngredient";
+import { getAllDrinks, getAllFoods, getDrinkWithFirstLetter, getDrinkWithIngredient, getDrinkWithName, getFoodWithFirstLetter, getFoodWithIngredients, getFoodWithName } from "../services/getFoodIngredient";
 import { Radios, SearchInputs } from "../styles/Header";
 
 function SearchBar() {
@@ -34,7 +34,7 @@ function SearchBar() {
       foodsAPI = await getFoodWithIngredients(search);
       setFoods(foodsAPI);
     }
-    drinksAPI = await getFoodWithIngredients(search);
+    drinksAPI = await getDrinkWithIngredient(search);
     setDrinks(drinksAPI);
   }
 
@@ -43,7 +43,7 @@ function SearchBar() {
       foodsAPI = await getFoodWithName(search);
       setFoods(foodsAPI);
     }
-    drinksAPI = await getFoodWithName(search);
+    drinksAPI = await getDrinkWithName(search);
     setDrinks(drinksAPI)
   }
 
@@ -52,7 +52,16 @@ function SearchBar() {
       foodsAPI = await getFoodWithFirstLetter(search);
       setFoods(foodsAPI);
     }
-    drinksAPI = await getFoodWithFirstLetter(search);
+    drinksAPI = await getDrinkWithFirstLetter(search);
+    setDrinks(drinksAPI)
+  }
+
+  const reset = async () => {
+    if (route === '/foods') {
+      foodsAPI = await getAllFoods();
+      setFoods(foodsAPI);
+    }
+    drinksAPI = await getAllDrinks();
     setDrinks(drinksAPI)
   }
 
@@ -103,6 +112,7 @@ function SearchBar() {
           First letter
         </label>
       </Radios>
+      <button type="button" onClick={reset}>Clear</button>
       <button type="button" onClick={handleSearchButton}>Search</button>
     </SearchInputs>
   )
