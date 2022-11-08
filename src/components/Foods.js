@@ -19,7 +19,6 @@ function Foods() {
         ))
         )}
         {(foods.meals === null ? <h5>Sorry, food not found!</h5> : null)}
-     
     </MainRecipe>
   )
 }

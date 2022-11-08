@@ -17,6 +17,7 @@ function Drinks() {
           </StyledLink>
         ))
       }
+      {(drinks.drinks === null ? <h5>Sorry, drink not found!</h5> : null)}
     </MainRecipe>
   )
 }
