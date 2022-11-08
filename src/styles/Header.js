@@ -9,6 +9,7 @@ export const Headers = styled.header `
 
   div {
     display: flex;
+    padding: 0px;
     gap: 7px;
   }
 
@@ -22,6 +23,13 @@ export const Headers = styled.header `
     width: 20px;
     height: 25px;
     }
+  }
+
+  div > button:nth-child(3) {
+    border: 2px solid #d9d9d9;
+    border-radius: 50px;
+    height: 35px;
+    width: 30%;
   }
 
   input {
@@ -56,6 +64,7 @@ export const SearchInputs = styled.div `
   .form-check-input:checked {
     border-color: #d9d9d9;
   }
+
 `
 
 export const Radios = styled.div `
