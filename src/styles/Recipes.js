@@ -37,7 +37,7 @@ export const DivCategories = styled.div `
     justify-content: center;
 
     button {
-      width: 100px;
+      width: 144px;
     }
 }
 `
