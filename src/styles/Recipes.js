@@ -23,7 +23,7 @@ export const CardRecipe = styled.div `
     img { 
       border-radius: 20px;
       box-shadow: ${({theme}) => theme.body === '#f1f1f1' ?
-       '8px 6px 11px -2px rgba(80, 80, 74, 0.46)': '8px 6px 11px -2px #d1d5db'}
+       '8px 6px 11px -2px rgba(80, 80, 74, 0.46)': '8px 6px 11px -2px #525252'}
     }
 
 `
