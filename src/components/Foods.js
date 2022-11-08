@@ -1,15 +1,23 @@
 import React, { useContext } from "react";
 import Context from "../context/Context";
+import { CardMeal, MainFood, StyledLink } from '../styles/Foods';
 
 function Foods() {
   const { foods } = useContext(Context);
   return (
-    <div>
+    <MainFood>
       { foods.meals && foods.meals.map((meal, id) => (
-          <h5 key={id}>{meal.strMeal}</h5>
+          <StyledLink key={id} to={`/foods/${meal.idMeal}`}>
+            <CardMeal>
+                <h5>{meal.strMeal}</h5>
+                <img
+                  width="250px"
+                  src={meal.strMealThumb} />
+            </CardMeal>
+          </StyledLink>
         ))
       }
-    </div>
+    </MainFood>
   )
 }
 
