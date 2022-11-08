@@ -3,9 +3,12 @@ import styled from "styled-components";
 export const Headers = styled.header `
   display: flex;
   justify-content: center;
-  margin-top: 1rem;
   align-items: center;
   flex-direction: column;
+
+  h1 {
+    margin-top: 1rem;
+  }
 
   div {
     display: flex;
@@ -38,6 +41,7 @@ export const Headers = styled.header `
     border-radius: 10px;
     padding: 5px;
   }
+
 
 `
 

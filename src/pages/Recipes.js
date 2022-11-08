@@ -10,6 +10,7 @@ function Recipes() {
     <div>
       <Header />
       { (history.location.pathname === '/drinks') ? <Drinks /> : <Foods /> }
+      
     </div>
   )
 }

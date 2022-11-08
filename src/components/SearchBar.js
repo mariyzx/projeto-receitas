@@ -14,6 +14,7 @@ function SearchBar() {
   const route = history.location.pathname;
 
   const handleInput = ({target}) => {
+
     setSearch(target.value)
   }
 
@@ -59,9 +60,11 @@ function SearchBar() {
   const reset = async () => {
     if (route === '/foods') {
       foodsAPI = await getAllFoods();
+      setSearch('')
       setFoods(foodsAPI);
     }
     drinksAPI = await getAllDrinks();
+    setSearch('')
     setDrinks(drinksAPI)
   }
 
@@ -82,13 +85,13 @@ function SearchBar() {
 
   return (
     <SearchInputs className="form-check">
-      <input type='text' placeholder="Search..." onChange={ handleInput } />
+      <input type='text' placeholder="Search..." value={search} onChange={ handleInput } />
       <Radios>
         <label className="form-check-label">
           <input 
             type='radio'
             name="radioSearch" 
-            value="ingredients" 
+            value="ingredients"
             className="form-check-input" 
             onChange={ handleChange } />
           Ingredients

@@ -1,23 +1,26 @@
 import React, { useContext } from "react";
 import Context from "../context/Context";
-import { CardMeal, MainFood, StyledLink } from '../styles/Foods';
+import { CardRecipe, MainRecipe, StyledLink } from '../styles/Recipes';
 
 function Foods() {
-  const { foods } = useContext(Context);
+  const { foods, loading } = useContext(Context);
   return (
-    <MainFood>
-      { foods.meals && foods.meals.map((meal, id) => (
-          <StyledLink key={id} to={`/foods/${meal.idMeal}`}>
-            <CardMeal>
+    <MainRecipe>
+      {loading ? <h4>Loading...</h4>
+      : ((foods.meals) && foods.meals.map((meal, id) => (
+        <StyledLink key={id} to={`/foods/${meal.idMeal}`}>
+            <CardRecipe>
                 <h5>{meal.strMeal}</h5>
                 <img
                   width="250px"
                   src={meal.strMealThumb} />
-            </CardMeal>
+            </CardRecipe>
           </StyledLink>
         ))
-      }
-    </MainFood>
+        )}
+        {(foods.meals === null ? <h5>Sorry, food not found!</h5> : null)}
+     
+    </MainRecipe>
   )
 }
 

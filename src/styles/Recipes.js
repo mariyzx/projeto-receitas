@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { Link } from 'react-router-dom';
 
-export const MainFood = styled.div `
+export const MainRecipe = styled.div `
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+
+    h5 {
+      margin-top: 2rem;
+    }
+
 `
 
-export const CardMeal = styled.div `
+export const CardRecipe = styled.div `
     display: flex;
     align-items: center;
     flex-direction: column;
