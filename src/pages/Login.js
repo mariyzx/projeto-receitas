@@ -46,7 +46,7 @@ function Login() {
           <Button disabled={disabled} onClick={() => saveToLocal()}>Entrar</Button>
       </form>
       <footer>Desenvolvido por 
-        <a href="https://www.linkedin.com/in/marinhomariana8/" target="_blank" rel="noreferrer">Mariana Werneck</a> em 2022.</footer>
+        <a href="https://www.linkedin.com/in/marinhomariana8/" target="_blank" rel="noreferrer"> Mariana Werneck </a> em 2022.</footer>
     </Main>
   )
 }
