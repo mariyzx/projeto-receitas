@@ -7,6 +7,10 @@ export const MainRecipe = styled.div `
     flex-wrap: wrap;
     justify-content: center;
 
+    h4 {
+      margin-top: 4rem;
+    }
+
     h5 {
       margin-top: 2rem;
     }
@@ -70,4 +74,3 @@ export const StyledLink = styled(Link) `
       text-decoration: none;
   }
 `
-
