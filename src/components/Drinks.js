@@ -4,12 +4,13 @@ import { MainRecipe, CardRecipe, StyledLink } from '../styles/Recipes';
 import Categories from "./Categories";
 
 function Drinks() {
-  const { drinks } = useContext(Context);
+  const { drinks, loading } = useContext(Context);
   return (
     <div>
       <Categories />
       <MainRecipe>
-        { drinks.drinks && drinks.drinks.map((drink, id) => (
+      {loading ? <h4>Loading...</h4>
+        : drinks.drinks && drinks.drinks.map((drink, id) => (
             <StyledLink key={id} to={`/drinks/${drink.idDrink}`}>
               <CardRecipe>
                   <h5>{drink.strDrink}</h5>
