@@ -4,10 +4,11 @@ import Carousel from "../components/Carousel";
 import Context from "../context/Context";
 
 function RecipeDetails() {
-  const { idMeals } = useParams();
-  const { recipe, waitMeal, measures, ingredients } = useContext(Context);
+  const { idMeals, idDrinks } = useParams();
+  const { recipe, waitMeal, waitDrink, measures, ingredients } = useContext(Context);
   useEffect(() => {
     if (idMeals) { waitMeal(idMeals) }
+    if (idDrinks) { waitDrink(idDrinks) }
   }, [])
 
   return (
