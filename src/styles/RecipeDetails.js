@@ -31,6 +31,7 @@ export const StepByStep = styled.div `
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 1rem;
 
   p {
     width: 90%
