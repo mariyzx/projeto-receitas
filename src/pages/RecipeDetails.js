@@ -2,10 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Context from "../context/Context";
+import { DivDetails, Ingredients, StepByStep } from "../styles/RecipeDetails";
 
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();
-  const { recipe, waitMeal, waitDrink, measures, ingredients } = useContext(Context);
+  const { recipe, drinks, foods, waitMeal, waitDrink, measures, ingredients } = useContext(Context);
   useEffect(() => {
     if (idMeals) { waitMeal(idMeals) }
     if (idDrinks) { waitDrink(idDrinks) }
@@ -13,8 +14,8 @@ function RecipeDetails() {
 
   return (
     <div>
-      { recipe.map((item,i) => (
-        <div key={i}>
+      { (drinks.drinks && foods.meals) && recipe.map((item,i) => (
+        <DivDetails key={i}>
           <h1>{item.strMeal ? item.strMeal : item.strDrink}</h1>
           <h3>{item.strAlcoholic? item.strAlcoholic : item.strCategory}</h3>
           <img
@@ -22,20 +23,25 @@ function RecipeDetails() {
               alt=""
               width="250px"
             />
-          <h4> Ingredients </h4>
-          { measures.map((_, i) => (
-            <p key={i}>
-              { item[measures[i]] !== '' && item[measures[i]] }
-              { item[ingredients[i]] !== '' && item[ingredients[i]] }
-            </p>
-          ))}
-          <h4> Step-By-Step </h4>
-          <p>{item.strInstructions}</p>
+          <Ingredients>
+            <h4> Ingredients </h4>
+            { measures.map((_, i) => (
+              <p key={i}>
+                { item[measures[i]] !== '' && item[measures[i]] }
+                {' '}
+                { item[ingredients[i]] !== '' && item[ingredients[i]] }
+              </p>
+            ))}
+          </Ingredients>
+          <StepByStep>
+            <h4> Step-By-Step </h4>
+            <p>{item.strInstructions}</p>
+          </StepByStep>
           <h4>Recommendations</h4>
           <section>
-            <Carousel />
+           <Carousel />
           </section>
-        </div>
+        </DivDetails>
       )) }
     </div>
   )

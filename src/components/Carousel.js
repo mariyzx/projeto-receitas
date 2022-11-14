@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
+import { CarouselDiv } from "../styles/RecipeDetails";
 
 function Carousel() {
   const { drinks, foods } = useContext(Context);
   const history = useHistory();
   const route = history.location.pathname;
   return (
-    <div>
+    <CarouselDiv>
       { drinks.drinks &&
         ((route.includes('foods') && drinks.drinks) ||
         (route.includes(drinks) && foods.foods)) ? (
@@ -26,7 +27,7 @@ function Carousel() {
           ))
          )
       }
-    </div>
+    </CarouselDiv>
   )
 }
 
