@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from 'prop-types';
 import Context from './Context';
+import { getMealRecipe } from "../services/getRecipe";
 
 function Provider({ children }) {
   const [foods, setFoods] = useState('');
@@ -11,6 +12,9 @@ function Provider({ children }) {
   const [drinksCategories, setDrinksCategories] = useState('');
   const [loading, setLoading] = useState(false);
   const [filter, setFilter] = useState(false);
+  const [recipe, setRecipe] = useState([]);
+  const [measures, setMeasures] = useState([]);
+  const [ingredients, setIngredients] = useState([]);
 
   const foodAPI = async () => {
     try {
@@ -104,6 +108,13 @@ function Provider({ children }) {
     }
   };
 
+  const waitMeal = async (idMeals) => {
+    const data = await getMealRecipe(idMeals);
+    setRecipe(data);
+    setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
+    setIngredients(Object.keys(data[0]).filter((e) => e.includes('strIngredient')));
+  }
+
   useEffect(() => { foodAPI(); drinkAPI(); foodCategoryAPI(); drinkCategoryAPI(); }, []);
 
   const contextValue = {
@@ -119,6 +130,10 @@ function Provider({ children }) {
     drinkByCategory,
     resetFilter,
     handleFilter,
+    waitMeal,
+    recipe,
+    measures,
+    ingredients,
   }
 
   return (
