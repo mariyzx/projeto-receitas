@@ -62,3 +62,13 @@ export const FooterButton = styled.button `
     height: 40px;
   }
 `
+
+export const StartButton = styled.button `
+  position: fixed;
+  bottom: 2px;
+  border: 2px solid #d9d9d9;
+  background-color: ${props => props.theme.body};
+  color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
+  border-radius: 20px;
+  width: 120px;
+`

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Context from "../context/Context";
+import { StartButton } from "../styles/Buttons";
 import { DivDetails, Ingredients, StepByStep } from "../styles/RecipeDetails";
 
 function RecipeDetails() {
@@ -52,7 +53,7 @@ function RecipeDetails() {
           <section>
            <Carousel />
           </section>
-          <button>Start Recipe</button>
+          <StartButton>Start Recipe</StartButton>
         </DivDetails>
       )) }
     </div>
