@@ -15,6 +15,7 @@ function Provider({ children }) {
   const [recipe, setRecipe] = useState([]);
   const [measures, setMeasures] = useState([]);
   const [ingredients, setIngredients] = useState([]);
+  const [inProgress, setInProgress] = useState(false);
 
   const foodAPI = async () => {
     try {
@@ -108,18 +109,24 @@ function Provider({ children }) {
     }
   };
 
-  const waitMeal = async (idMeals) => {
+  const waitMeal = async (idMeals, inProgressList) => {
     const data = await getMealRecipe(idMeals);
     setRecipe(data);
     setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
     setIngredients(Object.keys(data[0]).filter((e) => e.includes('strIngredient')));
+    if (inProgressList) {
+      setInProgress(Object.keys(inProgressList.meals).includes(idMeals))
+    }
   }
 
-  const waitDrink = async (idDrinks) => {
+  const waitDrink = async (idDrinks, inProgressList) => {
     const data = await getDrinkRecipe(idDrinks);
     setRecipe(data);
     setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
     setIngredients(Object.keys(data[0]).filter((e) => e.includes('strIngredient')));
+    if (inProgressList) {
+      setInProgress(Object.keys(inProgressList.cocktails).includes(idDrinks))
+    }
   }
 
   useEffect(() => { foodAPI(); drinkAPI(); foodCategoryAPI(); drinkCategoryAPI(); }, []);
@@ -142,6 +149,7 @@ function Provider({ children }) {
     recipe,
     measures,
     ingredients,
+    inProgress,
   }
 
   return (

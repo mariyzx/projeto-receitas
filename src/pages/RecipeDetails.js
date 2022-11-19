@@ -8,17 +8,49 @@ import { DivDetails, Ingredients, StepByStep } from "../styles/RecipeDetails";
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();
   const history = useHistory();
-  const { recipe, drinks, foods, waitMeal, waitDrink, measures, ingredients } = useContext(Context);
+  const { recipe, drinks, foods, waitMeal, waitDrink, measures, ingredients, inProgress } = useContext(Context);
   useEffect(() => {
-    if (idMeals) { waitMeal(idMeals) }
-    if (idDrinks) { waitDrink(idDrinks) }
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'))
+    if (idMeals) { waitMeal(idMeals, inProgressList) }
+    if (idDrinks) { waitDrink(idDrinks, inProgressList) }
   }, [])
+
   const cond = () => {
    if (history.location.pathname.includes('foods')) {
     return 'Foods';
    } else {
     return 'Drinks';
    }
+  }
+
+  const saveThisProgress = () => {
+    const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (inProgressList === null) {
+      if (idMeals) {
+        const firstMeal = { cocktails: { }, meals: { [idMeals]: [] } };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(firstMeal));
+      }
+      if (idDrinks) {
+        const firstCocktail = { cocktails: { [idDrinks]: [] }, meals: { } };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(firstCocktail));
+      }
+    }
+    if (inProgressList !== null) {
+      if (idMeals) {
+        const anotherMeal = {
+          cocktails: { ...inProgressList.cocktails },
+          meals: { ...inProgressList.meals, [idMeals]: [] },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(anotherMeal));
+      }
+      if (idDrinks) {
+        const anotherCocktail = {
+          cocktails: { ...inProgressList.cocktails, [idDrinks]: [] },
+          meals: { ...inProgressList.meals },
+        };
+        localStorage.setItem('inProgressRecipes', JSON.stringify(anotherCocktail));
+      }
+    }
   }
 
   return (
@@ -53,7 +85,9 @@ function RecipeDetails() {
           <section>
            <Carousel />
           </section>
-          <StartButton>Start Recipe</StartButton>
+          <StartButton onClick={ saveThisProgress }>
+            { inProgress ? 'Continue Recipe' : 'Start Recipe'}
+          </StartButton>
         </DivDetails>
       )) }
     </div>

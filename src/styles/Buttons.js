@@ -70,5 +70,6 @@ export const StartButton = styled.button `
   background-color: ${props => props.theme.body};
   color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
   border-radius: 20px;
-  width: 120px;
+  width: 150px;
+  padding: 2px;
 `
