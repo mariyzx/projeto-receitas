@@ -88,7 +88,7 @@ function RecipeDetails() {
           </section>
           {
             <StartButton onClick={ saveThisProgress }>
-                <StyledLink to={`${history.location.pathname}in-progress`}>
+                <StyledLink to={`${history.location.pathname}/in-progress`}>
                   { inProgress ? 'Continue Recipe' : 'Start Recipe'}
                 </StyledLink>
               </StartButton>
