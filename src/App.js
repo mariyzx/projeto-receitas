@@ -5,11 +5,11 @@ import { FaToggleOff, FaToggleOn } from 'react-icons/fa';
 import { Route, Switch } from 'react-router-dom';
 import Home from './components/Home';
 import Recipes from './pages/Recipes';
-import { Button } from "./styles/ToggleButton";
 
 import { lightTheme, darkTheme } from './components/Themes';
 import Profile from "./pages/Profile";
 import RecipeDetails from "./pages/RecipeDetails";
+import { ToggleButton } from "./styles/Buttons";
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -21,9 +21,9 @@ function App() {
     return (
       <Switch>
         <ThemeProvider theme={ theme === 'light' ? lightTheme : darkTheme }>
-          <Button onClick={ () => themeToggler()}>
+          <ToggleButton onClick={ () => themeToggler()}>
             { theme === 'light' ? <FaToggleOff /> : <FaToggleOn color="white" /> }
-          </Button>
+          </ToggleButton>
             <Route exact path="/" component={Home} />
             <Route exact path="/foods" component={Recipes} />
             <Route exact path="/foods/:idMeals" component={RecipeDetails} />

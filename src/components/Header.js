@@ -4,6 +4,7 @@ import { BsSearch } from 'react-icons/bs';
 import { Headers } from '../styles/Header';
 import { useHistory } from "react-router-dom";
 import SearchBar from "./SearchBar";
+import { ButtonIcon } from "../styles/Buttons";
 
 function Header() {
   const history = useHistory();
@@ -17,8 +18,8 @@ function Header() {
     <Headers>
       <h1>{window.location.pathname === '/foods' ? 'Foods' : 'Drinks'}</h1>
       <div>
-        <button onClick={() => history.push('/profile')}><CgProfile /></button>
-        <button onClick={() => handleSearch()}><BsSearch /></button>
+        <ButtonIcon onClick={() => history.push('/profile')}><CgProfile /></ButtonIcon>
+        <ButtonIcon onClick={() => handleSearch()}><BsSearch /></ButtonIcon>
       </div>
       { toggleSearch && <SearchBar />
       }

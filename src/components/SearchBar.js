@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
 import { getAllDrinks, getAllFoods, getDrinkWithFirstLetter, getDrinkWithIngredient, getDrinkWithName, getFoodWithFirstLetter, getFoodWithIngredients, getFoodWithName } from "../services/getFoodIngredient";
+import { SearchButton } from "../styles/Buttons";
 import { Radios, SearchInputs } from "../styles/Header";
 
 function SearchBar() {
@@ -115,8 +116,8 @@ function SearchBar() {
           First letter
         </label>
       </Radios>
-      <button type="button" onClick={reset}>Clear</button>
-      <button type="button" onClick={handleSearchButton}>Search</button>
+      <SearchButton type="button" onClick={reset}>Clear</SearchButton>
+      <SearchButton type="button" onClick={handleSearchButton}>Search</SearchButton>
     </SearchInputs>
   )
 }

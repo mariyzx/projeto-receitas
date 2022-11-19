@@ -52,6 +52,7 @@ function RecipeDetails() {
           <section>
            <Carousel />
           </section>
+          <button>Start Recipe</button>
         </DivDetails>
       )) }
     </div>

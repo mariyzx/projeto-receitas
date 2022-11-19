@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Main, Button } from '../styles/Login';
+import { Main, } from '../styles/Login';
 import title from '../images/title.png';
 import { Redirect } from 'react-router-dom';
+import { LoginButton } from '../styles/Buttons';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -43,7 +44,7 @@ function Login() {
             Sua senha
           </label>
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Escreva sua senha...' />
-          <Button disabled={disabled} onClick={() => saveToLocal()}>Entrar</Button>
+          <LoginButton disabled={disabled} onClick={() => saveToLocal()}>Entrar</LoginButton>
       </form>
       <footer>Desenvolvido por 
         <a href="https://www.linkedin.com/in/marinhomariana8/" target="_blank" rel="noreferrer"> Mariana Werneck </a> em 2022.</footer>

@@ -16,26 +16,6 @@ export const Headers = styled.header `
     gap: 7px;
   }
 
-  div > button {
-    border: none;
-    background-color: ${props => props.theme.body};
-    color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
-    margin-bottom: 1rem;
-
-    svg {
-    width: 20px;
-    height: 25px;
-    }
-  }
-
-  div > button:nth-child(3), div > button:nth-child(4) {
-    border: 2px solid #d9d9d9;
-    border-radius: 50px;
-    height: 35px;
-    margin-bottom: 0;
-    width: 30%;
-  }
-
   input {
     border: 2px solid #d9d9d9;
     border-radius: 10px;
