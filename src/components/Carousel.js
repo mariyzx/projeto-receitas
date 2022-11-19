@@ -22,7 +22,7 @@ function Carousel() {
           foods.meals.slice(0, 6).map((meal, i) => (
             <div key={i}>
               <p>{meal.strMeal}</p>
-              <img src={meal.strMealThumb} />
+              <img src={meal.strMealThumb} alt="" />
             </div>
           ))
          )

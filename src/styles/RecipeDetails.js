@@ -5,8 +5,9 @@ export const DivDetails = styled.div `
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 0.8rem;
+  margin-top: 0.6rem;
   gap: 10px;
+  text-align: center;
 
   img {
     border-radius: 20px;
@@ -44,6 +45,7 @@ export const CarouselDiv = styled.div `
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
+  margin-bottom: 1rem;
 
   div {
     align-items: center;

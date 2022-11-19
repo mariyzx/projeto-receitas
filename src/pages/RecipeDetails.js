@@ -1,21 +1,32 @@
 import React, { useContext, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import Carousel from "../components/Carousel";
 import Context from "../context/Context";
 import { DivDetails, Ingredients, StepByStep } from "../styles/RecipeDetails";
 
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();
+  const history = useHistory();
   const { recipe, drinks, foods, waitMeal, waitDrink, measures, ingredients } = useContext(Context);
   useEffect(() => {
     if (idMeals) { waitMeal(idMeals) }
     if (idDrinks) { waitDrink(idDrinks) }
   }, [])
+  const cond = () => {
+   if (history.location.pathname.includes('foods')) {
+    return 'Foods';
+   } else {
+    return 'Drinks';
+   }
+  }
 
   return (
     <div>
       { (drinks.drinks && foods.meals) && recipe.map((item,i) => (
         <DivDetails key={i}>
+          <h1 onClick={ () => history.goBack()}>
+            { cond() }
+          </h1>
           <h1>{item.strMeal ? item.strMeal : item.strDrink}</h1>
           <h3>{item.strAlcoholic? item.strAlcoholic : item.strCategory}</h3>
           <img
