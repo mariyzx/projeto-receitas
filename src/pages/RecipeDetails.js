@@ -4,6 +4,7 @@ import Carousel from "../components/Carousel";
 import Context from "../context/Context";
 import { StartButton } from "../styles/Buttons";
 import { DivDetails, Ingredients, StepByStep } from "../styles/RecipeDetails";
+import { StyledLink } from "../styles/Recipes";
 
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();
@@ -85,9 +86,13 @@ function RecipeDetails() {
           <section>
            <Carousel />
           </section>
-          <StartButton onClick={ saveThisProgress }>
-            { inProgress ? 'Continue Recipe' : 'Start Recipe'}
-          </StartButton>
+          {
+            <StartButton onClick={ saveThisProgress }>
+                <StyledLink to={`${history.location.pathname}in-progress`}>
+                  { inProgress ? 'Continue Recipe' : 'Start Recipe'}
+                </StyledLink>
+              </StartButton>
+          }
         </DivDetails>
       )) }
     </div>
