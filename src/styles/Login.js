@@ -11,7 +11,6 @@ export const Container = styled.div`
 `
 
 export const Main = styled.div`
-  // mobile first
 
   display: flex;
   flex-direction: column;
@@ -75,20 +74,3 @@ export const Main = styled.div`
 
 `
 
-export const Button = styled.button `
-  background-color: #129575;
-  height: 38px;
-  color: white;
-  font-weight: bold;
-  border: 2px solid transparent;
-  border-radius: 7px;
-  padding: 0.4rem;
-
-  &:hover {
-    background-color: #15ac87;
-  }
-
-  &:disabled {
-    background-color: grey;
-  }
-`
