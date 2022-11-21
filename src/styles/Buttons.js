@@ -73,3 +73,11 @@ export const StartButton = styled.button `
   width: 150px;
   padding: 2px;
 `
+
+export const ShareAndFavButton = styled.button `
+  border: none;
+  background-color: ${props => props.theme.body};
+  color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
+  width: 100%
+
+`

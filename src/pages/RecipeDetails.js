@@ -1,9 +1,11 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { AiOutlineShareAlt } from 'react-icons/ai'
+import { MdFavoriteBorder } from 'react-icons/md'
 import Carousel from "../components/Carousel";
 import Context from "../context/Context";
-import { StartButton } from "../styles/Buttons";
-import { DivDetails, Ingredients, StepByStep } from "../styles/RecipeDetails";
+import { ShareAndFavButton, StartButton } from "../styles/Buttons";
+import { DivDetails, Ingredients, ShareAndFav, StepByStep } from "../styles/RecipeDetails";
 import { StyledLink } from "../styles/Recipes";
 
 function RecipeDetails() {
@@ -78,6 +80,10 @@ function RecipeDetails() {
               </p>
             ))}
           </Ingredients>
+          <ShareAndFav>
+            <ShareAndFavButton><AiOutlineShareAlt /></ShareAndFavButton>
+            <ShareAndFavButton><MdFavoriteBorder /></ShareAndFavButton>
+          </ShareAndFav>
           <StepByStep>
             <h4> Step-By-Step </h4>
             <p>{item.strInstructions}</p>

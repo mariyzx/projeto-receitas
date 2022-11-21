@@ -45,7 +45,7 @@ export const CarouselDiv = styled.div `
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
-  margin-bottom: 1rem;
+  margin-bottom: 2.2rem;
 
   div {
     align-items: center;
@@ -61,4 +61,11 @@ export const CarouselDiv = styled.div `
     width: 30%;
   }
     
+`
+
+export const ShareAndFav = styled.div `
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 2.1rem;
 `
