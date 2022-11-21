@@ -78,6 +78,5 @@ export const ShareAndFavButton = styled.button `
   border: none;
   background-color: ${props => props.theme.body};
   color: ${({theme}) => theme.body === '#f1f1f1' ? 'black': 'white'};
-  width: 100%
-
+  width: 20%;
 `

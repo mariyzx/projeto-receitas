@@ -65,6 +65,8 @@ export const CarouselDiv = styled.div `
 
 export const ShareAndFav = styled.div `
   display: flex;
+  align-items: center;
+  background-color: ${({theme}) => theme.body === '#f1f1f1' ? 'black' : '#d9d9d9'};
   width: 100%;
   justify-content: center;
   margin-bottom: 2.1rem;
