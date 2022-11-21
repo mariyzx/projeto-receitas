@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { AiOutlineShareAlt } from 'react-icons/ai'
 import { MdFavoriteBorder } from 'react-icons/md'
@@ -10,9 +10,11 @@ import { StyledLink } from "../styles/Recipes";
 
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();
+  const [copied, setCopied] = useState(false);
   const history = useHistory();
   const { recipe, drinks, foods, waitMeal, waitDrink, measures, ingredients, inProgress } = useContext(Context);
   useEffect(() => {
+    setCopied(false);
     const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'))
     if (idMeals) { waitMeal(idMeals, inProgressList) }
     if (idDrinks) { waitDrink(idDrinks, inProgressList) }
@@ -25,6 +27,13 @@ function RecipeDetails() {
     return 'Drinks';
    }
   }
+
+  const copyRecipe = () => {
+    const url = window.location.href
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+  }
+
 
   const saveThisProgress = () => {
     const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'));
@@ -80,8 +89,9 @@ function RecipeDetails() {
               </p>
             ))}
           </Ingredients>
+          { copied && 'Link copied!'}
           <ShareAndFav>
-            <ShareAndFavButton><AiOutlineShareAlt /></ShareAndFavButton>
+            <ShareAndFavButton onClick={ () => copyRecipe() }><AiOutlineShareAlt /></ShareAndFavButton>
             <ShareAndFavButton><MdFavoriteBorder /></ShareAndFavButton>
           </ShareAndFav>
           <StepByStep>
