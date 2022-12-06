@@ -23,6 +23,14 @@ function RecipeDetails() {
     inProgress,
     favorites,
     setIsFavorites } = useContext(Context);
+
+  const verifyFav = () => {
+    let icon = false;
+    const favoritesList = JSON.parse(localStorage.getItem('favoriteRecipes'));
+    favoritesList.forEach((food) => food.id === idMeals ? icon = true : icon = false)
+    setIconFav(icon);
+  }
+
   useEffect(() => {
     setCopied(false);
     const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'))
@@ -31,13 +39,6 @@ function RecipeDetails() {
     if (idDrinks) { waitDrink(idDrinks, inProgressList) }
     if (idMeals && favoritesList) { verifyFav(); }
   }, [])
-
-  const verifyFav = () => {
-    let icon = false;
-    const favoritesList = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    favoritesList.forEach((food) => food.id === idMeals ? icon = true : icon = false)
-    setIconFav(icon);
-  }
 
   const cond = () => {
    if (history.location.pathname.includes('foods')) {
