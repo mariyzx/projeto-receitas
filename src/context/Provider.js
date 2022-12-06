@@ -16,6 +16,7 @@ function Provider({ children }) {
   const [measures, setMeasures] = useState([]);
   const [ingredients, setIngredients] = useState([]);
   const [inProgress, setInProgress] = useState(false);
+  const [favorites, setIsFavorites] = useState(false);
 
   const foodAPI = async () => {
     try {
@@ -109,7 +110,7 @@ function Provider({ children }) {
     }
   };
 
-  const waitMeal = async (idMeals, inProgressList) => {
+  const waitMeal = async (idMeals, inProgressList, favoritesList) => {
     const data = await getMealRecipe(idMeals);
     setRecipe(data);
     setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
@@ -117,15 +118,21 @@ function Provider({ children }) {
     if (inProgressList) {
       setInProgress(Object.keys(inProgressList.meals).includes(idMeals))
     }
+    if (favoritesList) {
+      setIsFavorites(favoritesList.some(({id}) => id === idMeals))
+    }
   }
 
-  const waitDrink = async (idDrinks, inProgressList) => {
+  const waitDrink = async (idDrinks, inProgressList, favoritesList) => {
     const data = await getDrinkRecipe(idDrinks);
     setRecipe(data);
     setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
     setIngredients(Object.keys(data[0]).filter((e) => e.includes('strIngredient')));
     if (inProgressList) {
       setInProgress(Object.keys(inProgressList.cocktails).includes(idDrinks))
+    }
+    if (favoritesList) {
+      setIsFavorites(favoritesList.some(({id}) => id === idDrinks))
     }
   }
 
@@ -150,6 +157,8 @@ function Provider({ children }) {
     measures,
     ingredients,
     inProgress,
+    favorites,
+    setIsFavorites,
   }
 
   return (
