@@ -1,8 +1,58 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { getDrinkRecipe, getMealRecipe } from "../services/getRecipe";
 
 function RecipeInProgress() {
+  const { idMeals, idDrinks} = useParams()
+  const [recipe, setRecipe] = useState('');
+
+  const getFoodInfo = async () => {
+    if (idMeals) {
+      const info = await getMealRecipe(idMeals);
+      setRecipe(info[0]);
+    } if (idDrinks) {
+      const info = await getDrinkRecipe(idDrinks);
+      setRecipe(info[0])
+    }
+  }
+
+  useEffect(() => {
+    const getRecipe = async () => {
+      await getFoodInfo();
+    }
+
+    getRecipe().catch(console.error);
+  }, [])
   return (
-    <div>AAAA</div>
+    <div>
+      <h1>In Progress</h1>
+      <h4>{recipe.strMeal || recipe.strDrink}</h4>
+      { recipe.strMeal ?
+        <p>{recipe.strArea} - {recipe.strCategory}</p>
+      : <p>{recipe.strCategory}</p> }
+      <img src={recipe.strDrinkThumb || recipe.strMealThumb} alt="" width="250px" />
+      <h5>Ingredients</h5>
+      { recipe.idMeal && Object.values(recipe).slice(9, 29)
+      .filter((elt) => elt !== null && elt !== '').map((it, i) => (
+          <div key={i}>
+            <label>
+              <input type="checkbox" name={ it } />
+              { it }
+            </label>
+          </div>
+        ))}
+      { recipe.idDrink && Object.values(recipe).slice(21, 35)
+      .filter((elt) => elt !== null && elt !== '').map((it, i) => (
+          <div key={i}>
+            <label>
+              <input type="checkbox" name={ it } />
+              { it }
+            </label>
+          </div>
+        ))}
+      <h5>Step-by-Step</h5>
+      <p>{recipe.strInstructions}</p>
+    </div>
   )
 }
 
