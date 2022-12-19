@@ -45,15 +45,17 @@ function RecipeInProgress() {
             </Checkbox>
           ))}
       </DivIngredients>
-      { recipe.idDrink && Object.values(recipe).slice(21, 35)
-      .filter((elt) => elt !== null && elt !== '').map((it, i) => (
-          <div key={i}>
-            <label>
-              <input type="checkbox" name={ it } />
-              { it }
-            </label>
-          </div>
-        ))}
+      <DivIngredients>
+        { recipe.idDrink && Object.values(recipe).slice(21, 35)
+        .filter((elt) => elt !== null && elt !== '').map((it, i) => (
+            <Checkbox key={i}>
+              <label>
+                <input type="checkbox" name={ it } />
+                { it }
+              </label>
+            </Checkbox>
+          ))}
+      </DivIngredients>
       <h5>Step-by-Step</h5>
       <p>{recipe.strInstructions}</p>
     </MainProgress>
