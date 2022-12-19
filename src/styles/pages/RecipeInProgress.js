@@ -6,7 +6,12 @@ export const MainProgress = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 0.8rem;
-  gap: 0.5rem;
+  text-align: center;
+  gap: 0.7rem;
+  
+  p {
+    padding: 30px;
+  }
 
   img { 
     border-radius: 20px;
@@ -24,4 +29,5 @@ export const DivIngredients = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: 10px;
 `

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDrinkRecipe, getMealRecipe } from "../services/getRecipe";
+import { StartButton } from "../styles/components/Buttons";
 import { Checkbox } from "../styles/components/Checkbox";
 import { DivIngredients, MainProgress } from "../styles/pages/RecipeInProgress";
 
@@ -58,6 +59,7 @@ function RecipeInProgress() {
       </DivIngredients>
       <h5>Step-by-Step</h5>
       <p>{recipe.strInstructions}</p>
+      <StartButton>Finish Recipe</StartButton>
     </MainProgress>
   )
 }
