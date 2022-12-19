@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDrinkRecipe, getMealRecipe } from "../services/getRecipe";
+import { MainProgress } from "../styles/pages/RecipeInProgress";
 
 function RecipeInProgress() {
   const { idMeals, idDrinks} = useParams()
@@ -24,7 +25,7 @@ function RecipeInProgress() {
     getRecipe().catch(console.error);
   }, [])
   return (
-    <div>
+    <MainProgress>
       <h1>In Progress</h1>
       <h4>{recipe.strMeal || recipe.strDrink}</h4>
       { recipe.strMeal ?
@@ -52,7 +53,7 @@ function RecipeInProgress() {
         ))}
       <h5>Step-by-Step</h5>
       <p>{recipe.strInstructions}</p>
-    </div>
+    </MainProgress>
   )
 }
 

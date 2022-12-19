@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { CgProfile } from 'react-icons/cg';
 import { BsSearch } from 'react-icons/bs';
-import { Headers } from '../styles/Header';
+import { Headers } from '../styles/components/Header';
 import { useHistory } from "react-router-dom";
 import SearchBar from "./SearchBar";
-import { ButtonIcon } from "../styles/Buttons";
+import { ButtonIcon } from "../styles/components/Buttons";
 
 function Header() {
   const history = useHistory();

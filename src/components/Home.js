@@ -1,5 +1,5 @@
 import React from "react";
-import { Container } from '../styles/Login';
+import { Container } from '../styles/pages/Login';
 import Login from '../pages/Login';
 
 const Home = () => {

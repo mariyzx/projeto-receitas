@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
-import { CarouselDiv } from "../styles/RecipeDetails";
+import { CarouselDiv } from "../styles/pages/RecipeDetails";
 
 function Carousel() {
   const { drinks, foods } = useContext(Context);

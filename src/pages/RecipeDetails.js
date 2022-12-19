@@ -4,9 +4,9 @@ import { AiOutlineShareAlt } from 'react-icons/ai'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import Carousel from "../components/Carousel";
 import Context from "../context/Context";
-import { ShareAndFavButton, StartButton } from "../styles/Buttons";
-import { DivDetails, Ingredients, ShareAndFav, StepByStep } from "../styles/RecipeDetails";
-import { StyledLink } from "../styles/Recipes";
+import { ShareAndFavButton, StartButton } from "../styles/components/Buttons";
+import { DivDetails, Ingredients, ShareAndFav, StepByStep } from "../styles/pages/RecipeDetails";
+import { StyledLink } from "../styles/pages/Recipes";
 
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();

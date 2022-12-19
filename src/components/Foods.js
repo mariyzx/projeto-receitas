@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Context from "../context/Context";
-import { CardRecipe, MainRecipe, StyledLink } from '../styles/Recipes';
+import { CardRecipe, MainRecipe, StyledLink } from '../styles/pages/Recipes';
 import Categories from "./Categories";
 
 function Foods() {

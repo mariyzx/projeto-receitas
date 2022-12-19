@@ -9,7 +9,7 @@ import Recipes from './pages/Recipes';
 import { lightTheme, darkTheme } from './components/Themes';
 import Profile from "./pages/Profile";
 import RecipeDetails from "./pages/RecipeDetails";
-import { ToggleButton } from "./styles/Buttons";
+import { ToggleButton } from "./styles/components/Buttons";
 import RecipeInProgress from "./pages/RecipesInProgress";
 
 function App() {

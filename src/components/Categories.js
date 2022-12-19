@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
-import { DivCategories } from "../styles/Recipes";
+import { DivCategories } from "../styles/pages/Recipes";
 
 function Categories() {
   const { foodsCategories, drinksCategories, handleFilter, resetFilter } = useContext(Context);
