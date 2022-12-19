@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getDrinkRecipe, getMealRecipe } from "../services/getRecipe";
-import { MainProgress } from "../styles/pages/RecipeInProgress";
+import { Checkbox } from "../styles/components/Checkbox";
+import { DivIngredients, MainProgress } from "../styles/pages/RecipeInProgress";
 
 function RecipeInProgress() {
   const { idMeals, idDrinks} = useParams()
@@ -33,15 +34,17 @@ function RecipeInProgress() {
       : <p>{recipe.strCategory}</p> }
       <img src={recipe.strDrinkThumb || recipe.strMealThumb} alt="" width="250px" />
       <h5>Ingredients</h5>
-      { recipe.idMeal && Object.values(recipe).slice(9, 29)
-      .filter((elt) => elt !== null && elt !== '').map((it, i) => (
-          <div key={i}>
-            <label>
-              <input type="checkbox" name={ it } />
-              { it }
-            </label>
-          </div>
-        ))}
+      <DivIngredients>
+        { recipe.idMeal && Object.values(recipe).slice(9, 29)
+        .filter((elt) => elt !== null && elt !== '').map((it, i) => (
+            <Checkbox key={i}>
+              <label>
+                <input type="checkbox" name={ it } />
+                { it }
+              </label>
+            </Checkbox>
+          ))}
+      </DivIngredients>
       { recipe.idDrink && Object.values(recipe).slice(21, 35)
       .filter((elt) => elt !== null && elt !== '').map((it, i) => (
           <div key={i}>
