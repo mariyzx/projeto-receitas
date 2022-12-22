@@ -116,10 +116,14 @@ function Provider({ children }) {
     setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
     setIngredients(Object.keys(data[0]).filter((e) => e.includes('strIngredient')));
     if (inProgressList) {
-      setInProgress(Object.keys(inProgressList.meals).includes(idMeals))
+      const foodExist = inProgressList.meals.filter((food) => food.id === idMeals)
+      if (foodExist.length > 0) {
+        setInProgress(true);
+      }
+      setInProgress(false);
     }
     if (favoritesList) {
-      setIsFavorites(favoritesList.some(({id}) => id === idMeals))
+      setIsFavorites(favoritesList.some(({ id }) => id === idMeals))
     }
   }
 
@@ -129,10 +133,14 @@ function Provider({ children }) {
     setMeasures(Object.keys(data[0]).filter((e) => e.includes('strMeasure')));
     setIngredients(Object.keys(data[0]).filter((e) => e.includes('strIngredient')));
     if (inProgressList) {
-      setInProgress(Object.keys(inProgressList.cocktails).includes(idDrinks))
+      const drinkExist = inProgressList.cocktails.filter((drink) => drink.id === idDrinks)
+      if (drinkExist.length > 0) {
+        setInProgress(true);
+      }
+      setInProgress(false);
     }
     if (favoritesList) {
-      setIsFavorites(favoritesList.some(({id}) => id === idDrinks))
+      setIsFavorites(favoritesList.some(({ id }) => id === idDrinks))
     }
   }
 
@@ -140,11 +148,11 @@ function Provider({ children }) {
 
   const contextValue = {
     foods,
-    setFoods, 
-    drinks, 
-    setDrinks, 
-    loading, 
-    setLoading, 
+    setFoods,
+    drinks,
+    setDrinks,
+    loading,
+    setLoading,
     foodsCategories,
     drinksCategories,
     foodByCategory,

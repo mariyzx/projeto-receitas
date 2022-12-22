@@ -27,8 +27,14 @@ function RecipeDetails() {
   const verifyFav = () => {
     let icon = false;
     const favoritesList = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    favoritesList.forEach((food) => food.id === idMeals ? icon = true : icon = false)
-    setIconFav(icon);
+    if (idMeals) {
+      favoritesList.forEach((food) => food.id === idMeals ? icon = true : icon = false)
+      setIconFav(icon);
+    }
+    if (idDrinks) {
+      favoritesList.cocktails.forEach((drink) => drink.id === idDrinks ? icon = true : icon = false)
+      setIconFav(icon);
+    }
   }
 
   useEffect(() => {
