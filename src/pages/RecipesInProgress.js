@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import { getDrinkRecipe, getMealRecipe } from "../services/getRecipe";
 import { StartButton } from "../styles/components/Buttons";
 import { Checkbox } from "../styles/components/Checkbox";
@@ -8,6 +8,10 @@ import { DivIngredients, MainProgress } from "../styles/pages/RecipeInProgress";
 function RecipeInProgress() {
   const { idMeals, idDrinks} = useParams()
   const [recipe, setRecipe] = useState('');
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+  const history = useHistory();
+  let [cont, setCont] = useState(0);
+  const path = history.location.pathname;
 
   const getFoodInfo = async () => {
     if (idMeals) {
@@ -19,6 +23,16 @@ function RecipeInProgress() {
     }
   }
 
+  const teste = async (e) => {
+    if (path.includes('foods')) {
+      const ingredients = Object.values(recipe).slice(9, 29)
+      .filter((elt) => elt !== null && elt !== '')
+      const limit = ingredients.length
+      e.target.checked ? setCont(cont + 1) : setCont(cont - 1)
+      cont === limit - 1 ? setButtonDisabled(false) : setButtonDisabled(true)
+    }
+  }
+
   useEffect(() => {
     const getRecipe = async () => {
       await getFoodInfo();
@@ -26,6 +40,7 @@ function RecipeInProgress() {
 
     getRecipe().catch(console.error);
   }, [])
+
   return (
     <MainProgress>
       <h1>In Progress</h1>
@@ -40,7 +55,7 @@ function RecipeInProgress() {
         .filter((elt) => elt !== null && elt !== '').map((it, i) => (
             <Checkbox key={i}>
               <label>
-                <input type="checkbox" name={ it } />
+                <input type="checkbox" name={ it } onClick={ (e) => teste(e)} />
                 { it }
               </label>
             </Checkbox>
@@ -49,7 +64,7 @@ function RecipeInProgress() {
       <DivIngredients>
         { recipe.idDrink && Object.values(recipe).slice(21, 35)
         .filter((elt) => elt !== null && elt !== '').map((it, i) => (
-            <Checkbox key={i}>
+            <Checkbox key={i} onClick={ (e) => teste(e)}>
               <label>
                 <input type="checkbox" name={ it } />
                 { it }
@@ -59,7 +74,7 @@ function RecipeInProgress() {
       </DivIngredients>
       <h5>Step-by-Step</h5>
       <p>{recipe.strInstructions}</p>
-      <StartButton>Finish Recipe</StartButton>
+      <StartButton onClick={ () => path.includes('drinks') ? history.push('/drinks') : history.push('/foods') } disabled={buttonDisabled}>Finish Recipe</StartButton>
     </MainProgress>
   )
 }
