@@ -72,6 +72,10 @@ export const StartButton = styled.button `
   border-radius: 20px;
   width: 150px;
   padding: 2px;
+
+  :disabled {
+    color: grey;
+  }
 `
 
 export const ShareAndFavButton = styled.button `

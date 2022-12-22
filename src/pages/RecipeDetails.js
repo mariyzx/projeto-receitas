@@ -4,9 +4,9 @@ import { AiOutlineShareAlt } from 'react-icons/ai'
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md'
 import Carousel from "../components/Carousel";
 import Context from "../context/Context";
-import { ShareAndFavButton, StartButton } from "../styles/Buttons";
-import { DivDetails, Ingredients, ShareAndFav, StepByStep } from "../styles/RecipeDetails";
-import { StyledLink } from "../styles/Recipes";
+import { ShareAndFavButton, StartButton } from "../styles/components/Buttons";
+import { DivDetails, Ingredients, ShareAndFav, StepByStep } from "../styles/pages/RecipeDetails";
+import { StyledLink } from "../styles/pages/Recipes";
 
 function RecipeDetails() {
   const { idMeals, idDrinks } = useParams();
@@ -27,8 +27,14 @@ function RecipeDetails() {
   const verifyFav = () => {
     let icon = false;
     const favoritesList = JSON.parse(localStorage.getItem('favoriteRecipes'));
-    favoritesList.forEach((food) => food.id === idMeals ? icon = true : icon = false)
-    setIconFav(icon);
+    if (idMeals) {
+      favoritesList.forEach((food) => food.id === idMeals ? icon = true : icon = false)
+      setIconFav(icon);
+    }
+    if (idDrinks) {
+      favoritesList.cocktails.forEach((drink) => drink.id === idDrinks ? icon = true : icon = false)
+      setIconFav(icon);
+    }
   }
 
   useEffect(() => {
@@ -58,27 +64,31 @@ function RecipeDetails() {
     const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (inProgressList === null) {
       if (idMeals) {
-        const firstMeal = { cocktails: { }, meals: { [idMeals]: [] } };
+        const firstMeal = { cocktails: [], meals: [ {id: idMeals} ] };
         localStorage.setItem('inProgressRecipes', JSON.stringify(firstMeal));
       }
       if (idDrinks) {
-        const firstCocktail = { cocktails: { [idDrinks]: [] }, meals: { } };
+        const firstCocktail = { cocktails:  [ {id: idDrinks} ], meals: [] };
         localStorage.setItem('inProgressRecipes', JSON.stringify(firstCocktail));
       }
     }
     if (inProgressList !== null) {
       if (idMeals) {
+        const foodExist = inProgressList.meals.filter((food) => food.id === idMeals)
         const anotherMeal = {
-          cocktails: { ...inProgressList.cocktails },
-          meals: { ...inProgressList.meals, [idMeals]: [] },
+          cocktails: [ ...inProgressList.cocktails ],
+          meals: [ ...inProgressList.meals, {id: idMeals} ],
         };
+        foodExist &&
         localStorage.setItem('inProgressRecipes', JSON.stringify(anotherMeal));
       }
       if (idDrinks) {
+        const drinkExist = inProgressList.meals.filter((drink) => drink.id === idDrinks)
         const anotherCocktail = {
-          cocktails: { ...inProgressList.cocktails, [idDrinks]: [] },
-          meals: { ...inProgressList.meals },
+          cocktails: [ ...inProgressList.cocktails, {id: idDrinks} ],
+          meals: [ ...inProgressList.meals ],
         };
+        drinkExist &&
         localStorage.setItem('inProgressRecipes', JSON.stringify(anotherCocktail));
       }
     }

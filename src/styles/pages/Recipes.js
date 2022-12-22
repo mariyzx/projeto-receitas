@@ -6,6 +6,7 @@ export const MainRecipe = styled.div `
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    margin-bottom: 7rem;
 
     h4 {
       margin-top: 4rem;

@@ -51,11 +51,3 @@ export const SearchInputs = styled.div `
   }
 
 `
-
-export const Radios = styled.div `
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100%;
-
-`

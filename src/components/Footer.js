@@ -2,8 +2,8 @@ import React from "react";
 import { BiDrink } from 'react-icons/bi'
 import { GiMeal } from 'react-icons/gi'
 import { useHistory } from "react-router-dom";
-import { FooterButton } from "../styles/Buttons";
-import { DivFooter } from "../styles/Footer";
+import { FooterButton } from "../styles/components/Buttons";
+import { DivFooter } from "../styles/components/Footer";
 
 
 function Footer() {

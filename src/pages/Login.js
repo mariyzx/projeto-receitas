@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Main, } from '../styles/Login';
+import { Main, } from '../styles/pages/Login';
 import title from '../images/title.png';
 import { Redirect } from 'react-router-dom';
-import { LoginButton } from '../styles/Buttons';
+import { LoginButton } from '../styles/components/Buttons';
 
 function Login() {
   const [email, setEmail] = useState('');

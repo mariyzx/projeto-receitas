@@ -2,8 +2,8 @@ import React, { useContext, useState } from "react";
 import { useHistory } from "react-router-dom";
 import Context from "../context/Context";
 import { getAllDrinks, getAllFoods, getDrinkWithFirstLetter, getDrinkWithIngredient, getDrinkWithName, getFoodWithFirstLetter, getFoodWithIngredients, getFoodWithName } from "../services/getFoodIngredient";
-import { SearchButton } from "../styles/Buttons";
-import { Radios, SearchInputs } from "../styles/Header";
+import { SearchButton } from "../styles/components/Buttons";
+import { SearchInputs } from "../styles/components/Header";
 
 function SearchBar() {
   const history = useHistory();
@@ -87,7 +87,6 @@ function SearchBar() {
   return (
     <SearchInputs className="form-check">
       <input type='text' placeholder="Search..." value={search} onChange={ handleInput } />
-      <Radios>
         <label className="form-check-label">
           <input 
             type='radio'
@@ -115,7 +114,6 @@ function SearchBar() {
             onChange={ handleChange } />
           First letter
         </label>
-      </Radios>
       <SearchButton type="button" onClick={reset}>Clear</SearchButton>
       <SearchButton type="button" onClick={handleSearchButton}>Search</SearchButton>
     </SearchInputs>
