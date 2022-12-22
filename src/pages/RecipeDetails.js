@@ -58,27 +58,31 @@ function RecipeDetails() {
     const inProgressList = JSON.parse(localStorage.getItem('inProgressRecipes'));
     if (inProgressList === null) {
       if (idMeals) {
-        const firstMeal = { cocktails: { }, meals: { [idMeals]: [] } };
+        const firstMeal = { cocktails: [], meals: [ {id: idMeals} ] };
         localStorage.setItem('inProgressRecipes', JSON.stringify(firstMeal));
       }
       if (idDrinks) {
-        const firstCocktail = { cocktails: { [idDrinks]: [] }, meals: { } };
+        const firstCocktail = { cocktails:  [ {id: idDrinks} ], meals: [] };
         localStorage.setItem('inProgressRecipes', JSON.stringify(firstCocktail));
       }
     }
     if (inProgressList !== null) {
       if (idMeals) {
+        const foodExist = inProgressList.meals.filter((food) => food.id === idMeals)
         const anotherMeal = {
-          cocktails: { ...inProgressList.cocktails },
-          meals: { ...inProgressList.meals, [idMeals]: [] },
+          cocktails: [ ...inProgressList.cocktails ],
+          meals: [ ...inProgressList.meals, {id: idMeals} ],
         };
+        foodExist ? null :
         localStorage.setItem('inProgressRecipes', JSON.stringify(anotherMeal));
       }
       if (idDrinks) {
+        const drinkExist = inProgressList.meals.filter((drink) => drink.id === idDrinks)
         const anotherCocktail = {
-          cocktails: { ...inProgressList.cocktails, [idDrinks]: [] },
-          meals: { ...inProgressList.meals },
+          cocktails: [ ...inProgressList.cocktails, {id: idDrinks} ],
+          meals: [ ...inProgressList.meals ],
         };
+        drinkExist ? null :
         localStorage.setItem('inProgressRecipes', JSON.stringify(anotherCocktail));
       }
     }

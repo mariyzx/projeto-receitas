@@ -23,7 +23,7 @@ function RecipeInProgress() {
     }
   }
 
-  const teste = async (e) => {
+  const handleCheck = (e) => {
     if (path.includes('foods')) {
       const ingredients = Object.values(recipe).slice(9, 29)
       .filter((elt) => elt !== null && elt !== '')
@@ -31,6 +31,28 @@ function RecipeInProgress() {
       e.target.checked ? setCont(cont + 1) : setCont(cont - 1)
       cont === limit - 1 ? setButtonDisabled(false) : setButtonDisabled(true)
     }
+  }
+
+  const setFinish = () => {
+    const local = JSON.parse(localStorage.getItem('inProgressRecipes'));
+    if (idMeals) {
+      const filt = local.meals.filter((food) => food.id !== idMeals)
+      const anotherMeal = {
+        cocktails: [ ...local.cocktails ],
+        meals: [ ...filt ],
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(anotherMeal))
+    }
+    if (idDrinks) {
+      const filt = local.meals.filter((drink) => drink.id !== idDrinks)
+      const anotherMeal = {
+        cocktails: [ ...filt ],
+        meals: [ ...local.meals ],
+      };
+      localStorage.setItem('inProgressRecipes', JSON.stringify(anotherMeal))
+    }
+
+    path.includes('drinks') ? history.push('/drinks') : history.push('/foods')
   }
 
   useEffect(() => {
@@ -55,7 +77,7 @@ function RecipeInProgress() {
         .filter((elt) => elt !== null && elt !== '').map((it, i) => (
             <Checkbox key={i}>
               <label>
-                <input type="checkbox" name={ it } onClick={ (e) => teste(e)} />
+                <input type="checkbox" name={ it } onClick={ (e) => handleCheck(e)} />
                 { it }
               </label>
             </Checkbox>
@@ -64,7 +86,7 @@ function RecipeInProgress() {
       <DivIngredients>
         { recipe.idDrink && Object.values(recipe).slice(21, 35)
         .filter((elt) => elt !== null && elt !== '').map((it, i) => (
-            <Checkbox key={i} onClick={ (e) => teste(e)}>
+            <Checkbox key={i} onClick={ (e) => handleCheck(e)}>
               <label>
                 <input type="checkbox" name={ it } />
                 { it }
@@ -74,7 +96,7 @@ function RecipeInProgress() {
       </DivIngredients>
       <h5>Step-by-Step</h5>
       <p>{recipe.strInstructions}</p>
-      <StartButton onClick={ () => path.includes('drinks') ? history.push('/drinks') : history.push('/foods') } disabled={buttonDisabled}>Finish Recipe</StartButton>
+      <StartButton onClick={ () => setFinish() } disabled={buttonDisabled}>Finish Recipe</StartButton>
     </MainProgress>
   )
 }
