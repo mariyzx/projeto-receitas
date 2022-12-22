@@ -79,7 +79,7 @@ function RecipeDetails() {
           cocktails: [ ...inProgressList.cocktails ],
           meals: [ ...inProgressList.meals, {id: idMeals} ],
         };
-        foodExist ? null :
+        foodExist &&
         localStorage.setItem('inProgressRecipes', JSON.stringify(anotherMeal));
       }
       if (idDrinks) {
@@ -88,7 +88,7 @@ function RecipeDetails() {
           cocktails: [ ...inProgressList.cocktails, {id: idDrinks} ],
           meals: [ ...inProgressList.meals ],
         };
-        drinkExist ? null :
+        drinkExist &&
         localStorage.setItem('inProgressRecipes', JSON.stringify(anotherCocktail));
       }
     }
